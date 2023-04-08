@@ -17,8 +17,13 @@ export class Search extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.searchUsers(this.state.keyword);
-        this.setState({ keyword: '' });
+
+        if(this.state.keyword === '') {
+            this.props.displayAlert('Anahtar Kelime Giriniz', 'danger');
+        } else {
+            this.props.searchUsers(this.state.keyword);
+            this.setState({ keyword: '' });
+        }
     }
 
     render() {
