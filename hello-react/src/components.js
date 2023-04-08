@@ -1,16 +1,29 @@
 var root = ReactDOM.createRoot(document.getElementById("root"));
 
 class TodoApp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.clearItems = this.clearItems.bind(this);
+        this.state = {
+            gorevler: ['görev 1', 'görev 2', 'görev 3']
+        }
+    }
+
+    clearItems() {
+        this.setState({
+            gorevler: []
+        });
+    }
+
     render() {
         const data = {
             baslik: "Todo Application",
-            aciklama: "Bekleyen Görevler",
-            gorevler: ['görev 1', 'görev 2', 'görev 3']
+            aciklama: "Bekleyen Görevler",            
         }
         return (
             <div> 
                 <Header title={ data.baslik } description={ data.aciklama } /> 
-                <TodoList items={ data.gorevler } /> 
+                <TodoList items={ this.state.gorevler } clear={this.clearItems} /> 
                 <NewItem />
             </div>
         );
@@ -29,24 +42,15 @@ class Header extends React.Component {
 }
 
 class TodoList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.clearItems = this.clearItems.bind(this);
-    }
-    clearItems() {
-        console.log("clear items");
-        console.log(this.props.items);
-    }
     render() {
         return (
             <div>
                 <ul>
                     {
-                        this.props.items.map((gorev,index) => 
-                        <TodoItem key={index} item={gorev}/>)
+                        this.props.items.map((gorev,index) => <TodoItem key={index} item={gorev}/>)
                     }
                 </ul>
-                <button onClick={this.clearItems}>Temizle</button>
+                <button onClick={this.props.clear}>Temizle</button>
             </div>
         );
     }
