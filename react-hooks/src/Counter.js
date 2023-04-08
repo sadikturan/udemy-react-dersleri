@@ -1,7 +1,6 @@
 // class component => state (Component), lifecycle
 // function component + state (hooks) 
 
-import { useState } from "react";
 
 // import { Component } from "react";
 
@@ -11,6 +10,14 @@ import { useState } from "react";
 //     this.state = {
 //       count: 0
 //     }
+//   }
+
+//   componentDidMount() {
+//     console.log("did mount");
+//   }
+
+//   componentDidUpdate() {
+//     console.log("component update");
 //   }
 
 //   render() {
@@ -23,9 +30,26 @@ import { useState } from "react";
 //   }
 // }
 
+// componentDidMount, componentDidUpdate
+
+import { useState, useEffect } from "react";
+
 function App(props) {
   const [count, setCount] = useState(props.count);
   const [text, setText] = useState(props.text);
+
+  useEffect(() => {
+    console.log("count");
+  }, [count]);
+
+  useEffect(() => {
+    console.log("componentDidMount");
+  }, []);
+
+  useEffect(() => {
+    console.log("componentDidMount, componentDidUpdate")
+  });
+
   return (
     <>
       <p>Butona { count } kez tıkladınız.</p> 
@@ -36,6 +60,11 @@ function App(props) {
       <input type="text" value={ text } onChange={ (e) => setText(e.target.value) }/>
     </>
   );
+}
+
+App.defaultProps = {
+  count: 5,
+  text: ''
 }
 
 export default App;
