@@ -4,7 +4,7 @@ import ReactDom from 'react-dom/client';
 import ProductList from './components/ProductList';
 import Header from './components/Header';
 import NewProduct from './components/NewProduct';
-import './css/style.scss';
+import './css/main.scss';
 
 var root = ReactDom.createRoot(document.getElementById("root"));
 

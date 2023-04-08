@@ -18,7 +18,7 @@ class NewProduct extends React.Component {
             <form onSubmit={this.saveProduct}>
                 <input type="text" name="p_name" id="p_name" />
                 <input type="text" name="p_price" id="p_price" />
-                <button type="submit">Ürün Ekle</button>
+                <button className='btn btn-primary' type="submit">Ürün Ekle</button>
             </form>
         );
     }
