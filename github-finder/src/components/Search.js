@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
+import { UsersContext } from '../context/usersContext';
 
-const Search = ({ displayAlert,searchUsers,showClearButton,clearResults }) => {
+const Search = ({ displayAlert }) => {
 
     const [keyword, setKeyword] = useState('');
+    const { searchUsers, users,clearUsers  } = useContext(UsersContext);
 
     const onChange = (e) => {
         setKeyword(e.target.value);
@@ -28,7 +30,7 @@ const Search = ({ displayAlert,searchUsers,showClearButton,clearResults }) => {
                 </div>
             </form>
             {
-                showClearButton && <button onClick={clearResults} className="btn btn-outline-danger mt-2 btn-block">Sonuçları Temizle</button>
+                users.length > 0 && <button onClick={clearUsers} className="btn btn-outline-danger mt-2 btn-block">Sonuçları Temizle</button>
             }        
 
         </div>
