@@ -5,9 +5,21 @@ class TodoApp extends React.Component {
         super(props);
         this.clearItems = this.clearItems.bind(this);
         this.addItem = this.addItem.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
         this.state = {
             gorevler: ['görev 1', 'görev 2', 'görev 3']
         }
+    }
+
+    deleteItem(item) {
+        this.setState((prevState) => {
+            const arr = prevState.gorevler.filter((i) => {
+                return item != i;
+            });
+            return {
+                gorevler: arr
+            }
+        });
     }
 
     clearItems() {
@@ -35,7 +47,7 @@ class TodoApp extends React.Component {
         return (
             <div> 
                 <Header title={ data.baslik } description={ data.aciklama } /> 
-                <TodoList items={ this.state.gorevler } clear={this.clearItems} /> 
+                <TodoList items={ this.state.gorevler } clear={this.clearItems} deleteItem={ this.deleteItem } /> 
                 <NewItem addItem={ this.addItem }/>
             </div>
         );
@@ -59,7 +71,7 @@ class TodoList extends React.Component {
             <div>
                 <ul>
                     {
-                        this.props.items.map((gorev,index) => <TodoItem key={index} item={gorev}/>)
+                        this.props.items.map((gorev,index) => <TodoItem key={index} item={gorev} deleteItem={ this.props.deleteItem } />)
                     }
                 </ul>
                 <button onClick={this.props.clear}>Temizle</button>
@@ -103,8 +115,20 @@ class NewItem extends React.Component {
 }
 
 class TodoItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.deleteItem = this.deleteItem.bind(this);
+    }
+    deleteItem() {
+        this.props.deleteItem(this.props.item);
+    }
     render() {
-        return <li>{this.props.item}</li>
+        return (
+            <li>
+                {this.props.item}
+                <button onClick={this.deleteItem}>x</button>
+            </li>
+        );
     }
 }
 

@@ -23,12 +23,25 @@ var TodoApp = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.clearItems = _this.clearItems.bind(_assertThisInitialized(_this));
     _this.addItem = _this.addItem.bind(_assertThisInitialized(_this));
+    _this.deleteItem = _this.deleteItem.bind(_assertThisInitialized(_this));
     _this.state = {
       gorevler: ['görev 1', 'görev 2', 'görev 3']
     };
     return _this;
   }
   _createClass(TodoApp, [{
+    key: "deleteItem",
+    value: function deleteItem(item) {
+      this.setState(function (prevState) {
+        var arr = prevState.gorevler.filter(function (i) {
+          return item != i;
+        });
+        return {
+          gorevler: arr
+        };
+      });
+    }
+  }, {
     key: "clearItems",
     value: function clearItems() {
       this.setState({
@@ -59,7 +72,8 @@ var TodoApp = /*#__PURE__*/function (_React$Component) {
         description: data.aciklama
       }), /*#__PURE__*/React.createElement(TodoList, {
         items: this.state.gorevler,
-        clear: this.clearItems
+        clear: this.clearItems,
+        deleteItem: this.deleteItem
       }), /*#__PURE__*/React.createElement(NewItem, {
         addItem: this.addItem
       }));
@@ -92,10 +106,12 @@ var TodoList = /*#__PURE__*/function (_React$Component3) {
   _createClass(TodoList, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, this.props.items.map(function (gorev, index) {
         return /*#__PURE__*/React.createElement(TodoItem, {
           key: index,
-          item: gorev
+          item: gorev,
+          deleteItem: _this2.props.deleteItem
         });
       })), /*#__PURE__*/React.createElement("button", {
         onClick: this.props.clear
@@ -108,14 +124,14 @@ var NewItem = /*#__PURE__*/function (_React$Component4) {
   _inherits(NewItem, _React$Component4);
   var _super4 = _createSuper(NewItem);
   function NewItem(props) {
-    var _this2;
+    var _this3;
     _classCallCheck(this, NewItem);
-    _this2 = _super4.call(this, props);
-    _this2.onFormSubmit = _this2.onFormSubmit.bind(_assertThisInitialized(_this2));
-    _this2.state = {
+    _this3 = _super4.call(this, props);
+    _this3.onFormSubmit = _this3.onFormSubmit.bind(_assertThisInitialized(_this3));
+    _this3.state = {
       error: ''
     };
-    return _this2;
+    return _this3;
   }
   _createClass(NewItem, [{
     key: "onFormSubmit",
@@ -148,14 +164,24 @@ var NewItem = /*#__PURE__*/function (_React$Component4) {
 var TodoItem = /*#__PURE__*/function (_React$Component5) {
   _inherits(TodoItem, _React$Component5);
   var _super5 = _createSuper(TodoItem);
-  function TodoItem() {
+  function TodoItem(props) {
+    var _this4;
     _classCallCheck(this, TodoItem);
-    return _super5.apply(this, arguments);
+    _this4 = _super5.call(this, props);
+    _this4.deleteItem = _this4.deleteItem.bind(_assertThisInitialized(_this4));
+    return _this4;
   }
   _createClass(TodoItem, [{
+    key: "deleteItem",
+    value: function deleteItem() {
+      this.props.deleteItem(this.props.item);
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("li", null, this.props.item);
+      return /*#__PURE__*/React.createElement("li", null, this.props.item, /*#__PURE__*/React.createElement("button", {
+        onClick: this.deleteItem
+      }, "x"));
     }
   }]);
   return TodoItem;
