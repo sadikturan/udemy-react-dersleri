@@ -52,6 +52,14 @@ class TodoApp extends React.Component {
             </div>
         );
     }
+
+    componentDidMount() {
+        console.log("component oluşturuldu.");
+    }
+
+    componentDidUpdate() {
+        console.log("component güncellendi.");
+    }
 }
 
 class Header extends React.Component {
@@ -112,6 +120,10 @@ class NewItem extends React.Component {
             </div>
         );
     }
+
+    componentDidUpdate() {
+        console.log("newitem component güncellendi.");
+    }
 }
 
 class TodoItem extends React.Component {
@@ -129,6 +141,10 @@ class TodoItem extends React.Component {
                 <button onClick={this.deleteItem}>x</button>
             </li>
         );
+    }
+
+    componentWillUnmount() {
+        console.log("eleman silindi");
     }
 }
 
