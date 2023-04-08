@@ -14,23 +14,22 @@ export class App extends Component {
     }
   }
 
-  componentDidMount() {
-    
+  searchUsers = (keyword) => {
+
     this.setState({ loading: true });
 
     setTimeout(() => {
-      fetch("https://api.github.com/users")
+      fetch("https://api.github.com/search/users?q=" + keyword)
         .then(response => response.json())
-        .then(data => this.setState({ users: data, loading: false }));
-    }, 2000);
-
+        .then(data => this.setState({ users: data.items, loading: false }));
+    }, 1000);
   }
 
   render() {
     return (
       <div>
         <Navbar />
-        <Search />
+        <Search searchUsers={this.searchUsers}/>
         <div className="container mt-3">
           <UserList users={ this.state.users } loading={this.state.loading}/>
         </div>
