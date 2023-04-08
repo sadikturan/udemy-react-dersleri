@@ -1,5 +1,8 @@
 var root = ReactDOM.createRoot(document.getElementById("root"));
 
+// function component + hooks
+// class component (state + lifecycle)
+
 class TodoApp extends React.Component {
     constructor(props) {
         super(props);
@@ -72,30 +75,26 @@ class TodoApp extends React.Component {
     }
 }
 
-class Header extends React.Component {
-    render() {
-        return  (
-            <div> 
-                <h1>{ this.props.title }</h1>
-                <p> { this.props.description }</p>
-            </div>
-        );
-    }
+const Header = (props) => {
+    return  (
+        <div> 
+            <h1>{ props.title }</h1>
+            <p> { props.description }</p>
+        </div>
+    );
 }
 
-class TodoList extends React.Component {
-    render() {
-        return (
-            <div>
-                <ul>
-                    {
-                        this.props.items.map((gorev,index) => <TodoItem key={index} item={gorev} deleteItem={ this.props.deleteItem } />)
-                    }
-                </ul>
-                <button onClick={this.props.clear}>Temizle</button>
-            </div>
-        );
-    }
+const TodoList = (props) => {
+    return (
+        <div>
+            <ul>
+                {
+                    props.items.map((gorev,index) => <TodoItem key={index} item={gorev} deleteItem={ props.deleteItem } />)
+                }
+            </ul>
+            <button onClick={props.clear}>Temizle</button>
+        </div>
+    );
 }
 
 class NewItem extends React.Component {
@@ -136,26 +135,13 @@ class NewItem extends React.Component {
     }
 }
 
-class TodoItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.deleteItem = this.deleteItem.bind(this);
-    }
-    deleteItem() {
-        this.props.deleteItem(this.props.item);
-    }
-    render() {
-        return (
-            <li>
-                {this.props.item}
-                <button onClick={this.deleteItem}>x</button>
-            </li>
-        );
-    }
-
-    componentWillUnmount() {
-        console.log("eleman silindi");
-    }
+const TodoItem = (props) => {
+    return (
+        <li>
+            {props.item}
+            <button onClick={() => { props.deleteItem(props.item) }}>x</button>
+        </li>
+    );
 }
 
 root.render(<TodoApp />);
