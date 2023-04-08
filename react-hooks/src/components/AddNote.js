@@ -1,18 +1,21 @@
 import { useState } from "react";
 
-const AddNote = ({ newNote }) => {
+const AddNote = ({ dispatch, notes }) => {
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        newNote(title, description);
+        dispatch({
+            type: "ADD_NOTE",
+            id: notes.length + 1, title: title, description: description
+        })
         setTitle('');
         setDescription('');
     }
 
-    return (
+     return (
         <form onSubmit={ handleSubmit }>
             <input type="text"  value={title} onChange={ (e) => setTitle(e.target.value) } placeholder="Title" />
             <input type="text"  value={description} onChange={ (e) => setDescription(e.target.value) }  placeholder="Description" />
