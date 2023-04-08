@@ -14,23 +14,37 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 var root = ReactDOM.createRoot(document.getElementById("root"));
-
-// function component
-// class component
-
-// function Header(props) {
-//     console.log(props);
-//     return <div> 
-//                 <h1>{ props.title }</h1>
-//                 <p> { props.description }</p>
-//            </div>;
-// }
-var Header = /*#__PURE__*/function (_React$Component) {
-  _inherits(Header, _React$Component);
-  var _super = _createSuper(Header);
+var TodoApp = /*#__PURE__*/function (_React$Component) {
+  _inherits(TodoApp, _React$Component);
+  var _super = _createSuper(TodoApp);
+  function TodoApp() {
+    _classCallCheck(this, TodoApp);
+    return _super.apply(this, arguments);
+  }
+  _createClass(TodoApp, [{
+    key: "render",
+    value: function render() {
+      var data = {
+        baslik: "Todo Application",
+        aciklama: "Bekleyen Görevler",
+        gorevler: ['görev 1', 'görev 2', 'görev 3']
+      };
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
+        title: data.baslik,
+        description: data.aciklama
+      }), /*#__PURE__*/React.createElement(TodoList, {
+        items: data.gorevler
+      }));
+    }
+  }]);
+  return TodoApp;
+}(React.Component);
+var Header = /*#__PURE__*/function (_React$Component2) {
+  _inherits(Header, _React$Component2);
+  var _super2 = _createSuper(Header);
   function Header() {
     _classCallCheck(this, Header);
-    return _super.apply(this, arguments);
+    return _super2.apply(this, arguments);
   }
   _createClass(Header, [{
     key: "render",
@@ -40,25 +54,39 @@ var Header = /*#__PURE__*/function (_React$Component) {
   }]);
   return Header;
 }(React.Component);
-var TodoApp = /*#__PURE__*/function (_React$Component2) {
-  _inherits(TodoApp, _React$Component2);
-  var _super2 = _createSuper(TodoApp);
-  function TodoApp() {
-    _classCallCheck(this, TodoApp);
-    return _super2.apply(this, arguments);
+var TodoList = /*#__PURE__*/function (_React$Component3) {
+  _inherits(TodoList, _React$Component3);
+  var _super3 = _createSuper(TodoList);
+  function TodoList() {
+    _classCallCheck(this, TodoList);
+    return _super3.apply(this, arguments);
   }
-  _createClass(TodoApp, [{
+  _createClass(TodoList, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
-        title: "Todo Uygulamas\u0131",
-        description: "Bekleyen G\xF6revler"
-      }), /*#__PURE__*/React.createElement(Todo, null));
+      return /*#__PURE__*/React.createElement("ul", null, this.props.items.map(function (gorev, index) {
+        return /*#__PURE__*/React.createElement(TodoItem, {
+          key: index,
+          item: gorev
+        });
+      }));
     }
   }]);
-  return TodoApp;
+  return TodoList;
 }(React.Component);
-function Todo(props) {
-  return /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "G\xF6rev 1"), /*#__PURE__*/React.createElement("li", null, "G\xF6rev 2"), /*#__PURE__*/React.createElement("li", null, "G\xF6rev 3"));
-}
+var TodoItem = /*#__PURE__*/function (_React$Component4) {
+  _inherits(TodoItem, _React$Component4);
+  var _super4 = _createSuper(TodoItem);
+  function TodoItem() {
+    _classCallCheck(this, TodoItem);
+    return _super4.apply(this, arguments);
+  }
+  _createClass(TodoItem, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("li", null, this.props.item);
+    }
+  }]);
+  return TodoItem;
+}(React.Component);
 root.render( /*#__PURE__*/React.createElement(TodoApp, null));

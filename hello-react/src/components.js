@@ -1,15 +1,20 @@
 var root = ReactDOM.createRoot(document.getElementById("root"));
 
-// function component
-// class component
-
-// function Header(props) {
-//     console.log(props);
-//     return <div> 
-//                 <h1>{ props.title }</h1>
-//                 <p> { props.description }</p>
-//            </div>;
-// }
+class TodoApp extends React.Component {
+    render() {
+        const data = {
+            baslik: "Todo Application",
+            aciklama: "Bekleyen Görevler",
+            gorevler: ['görev 1', 'görev 2', 'görev 3']
+        }
+        return (
+            <div> 
+                <Header title={ data.baslik } description={ data.aciklama } /> 
+                <TodoList items={ data.gorevler } /> 
+            </div>
+        );
+    }
+}
 
 class Header extends React.Component {
     render() {
@@ -22,26 +27,23 @@ class Header extends React.Component {
     }
 }
 
-class TodoApp extends React.Component {
+class TodoList extends React.Component {
     render() {
         return (
-            <div> 
-                <Header title="Todo Uygulaması" description="Bekleyen Görevler"/> 
-                <Todo /> 
-            </div>
+            <ul>
+                {
+                    this.props.items.map((gorev,index) => 
+                        <TodoItem key={index} item={gorev}/>)
+                }
+            </ul>
         );
     }
 }
 
-
-function Todo(props) {
-    return (
-        <ul>
-            <li>Görev 1</li>
-            <li>Görev 2</li>
-            <li>Görev 3</li>
-        </ul>
-    );
+class TodoItem extends React.Component {
+    render() {
+        return <li>{this.props.item}</li>
+    }
 }
 
 root.render(<TodoApp />);
