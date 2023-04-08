@@ -1,64 +1,57 @@
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 var root = ReactDOM.createRoot(document.getElementById("root"));
-var products = [{
-  name: "iphone 15",
-  price: 50000
-}, {
-  name: "iphone 16",
-  price: 60000
-}, {
-  name: "iphone 17",
-  price: 60000
-}];
-var selectedProducts = [];
-function selectProduct(event, p_name) {
-  console.log(event.target, p_name);
-  if (!selectedProducts.includes(p_name)) {
-    selectedProducts.push(p_name);
+
+// function component
+// class component
+
+// function Header(props) {
+//     return (<h1>Todo App</h1>);
+// }
+var TodoApp = /*#__PURE__*/function (_React$Component) {
+  _inherits(TodoApp, _React$Component);
+  var _super = _createSuper(TodoApp);
+  function TodoApp() {
+    _classCallCheck(this, TodoApp);
+    return _super.apply(this, arguments);
   }
-  renderApp();
+  _createClass(TodoApp, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(Todo, null));
+    }
+  }]);
+  return TodoApp;
+}(React.Component);
+var Header = /*#__PURE__*/function (_React$Component2) {
+  _inherits(Header, _React$Component2);
+  var _super2 = _createSuper(Header);
+  function Header() {
+    _classCallCheck(this, Header);
+    return _super2.apply(this, arguments);
+  }
+  _createClass(Header, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("h1", null, "Todo App");
+    }
+  }]);
+  return Header;
+}(React.Component);
+function Todo(props) {
+  return /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "G\xF6rev 1"), /*#__PURE__*/React.createElement("li", null, "G\xF6rev 2"), /*#__PURE__*/React.createElement("li", null, "G\xF6rev 3"));
 }
-function saveProduct(event) {
-  event.preventDefault();
-  var p_name = event.target.elements.p_name.value;
-  var p_price = event.target.elements.p_price.value;
-  var product = {
-    name: p_name,
-    price: p_price
-  };
-  products.push(product);
-  event.target.elements.p_name.value = "";
-  event.target.elements.p_price.value = "";
-  renderApp();
-}
-function renderApp() {
-  var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", {
-    id: "header"
-  }, "\xDCr\xFCn Listesi"), /*#__PURE__*/React.createElement("h3", null, "Se\xE7ilen \xDCr\xFCnler: ", selectedProducts.length), /*#__PURE__*/React.createElement("form", {
-    onSubmit: saveProduct
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    name: "p_name",
-    id: "p_name"
-  }), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    name: "p_price",
-    id: "p_price"
-  }), /*#__PURE__*/React.createElement("button", {
-    type: "submit"
-  }, "\xDCr\xFCn Ekle")), products.map(function (product, index) {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "product-details",
-      key: index
-    }, /*#__PURE__*/React.createElement("h2", null, " ", product.name, " "), product.price, /*#__PURE__*/React.createElement("button", {
-      type: "button",
-      id: index,
-      onClick: function onClick(event) {
-        return selectProduct(event, product.name);
-      }
-    }, "Ekle"));
-  }));
-  root.render(template);
-}
-renderApp();
+root.render( /*#__PURE__*/React.createElement(TodoApp, null));
