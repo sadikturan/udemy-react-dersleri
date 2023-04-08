@@ -1,18 +1,22 @@
 "use strict";
 
-var p_name = "IPhone 14 Pro";
-var p_price = 45000;
 var product = {
   name: "IPhone 15",
-  price: 55000
+  price: 50000,
+  description: "iyi telefon"
 };
 function formatPrice(product) {
-  return product.price + " TL";
+  return /*#__PURE__*/React.createElement("p", null, product.price, " TL");
+}
+function printDescription(product) {
+  if (product.description) {
+    return /*#__PURE__*/React.createElement("p", null, " ", product.description, " ");
+  }
 }
 var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", {
   id: "header"
 }, "\xDCr\xFCn Listesi"), /*#__PURE__*/React.createElement("div", {
-  "class": "product-details"
-}, /*#__PURE__*/React.createElement("h2", null, product.name), /*#__PURE__*/React.createElement("p", null, formatPrice(product)), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "Lorem, ipsum."), /*#__PURE__*/React.createElement("li", null, "Lorem, ipsum."), /*#__PURE__*/React.createElement("li", null, "Lorem, ipsum."))));
+  id: "product-details"
+}, /*#__PURE__*/React.createElement("h2", null, product.name), product.price && product.price > 0 && formatPrice(product), product.description && /*#__PURE__*/React.createElement("p", null, " ", product.description, " "), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "Lorem, ipsum."), /*#__PURE__*/React.createElement("li", null, "Lorem, ipsum."), /*#__PURE__*/React.createElement("li", null, "Lorem, ipsum."))));
 var root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(template);
