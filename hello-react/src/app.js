@@ -1,4 +1,7 @@
-var root = ReactDOM.createRoot(document.getElementById("root"));
+import React from 'react';
+import ReactDom from 'react-dom/client';
+
+var root = ReactDom.createRoot(document.getElementById("root"));
 
 var products = [
     {
