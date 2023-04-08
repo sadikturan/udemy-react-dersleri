@@ -1,9 +1,9 @@
-import NodeList from "./components/NoteList";
+import NoteList from "./components/NoteList";
 
 function App(props) {
   return (
     <>
-      <NodeList />
+      <NoteList />
     </>
   );
 }

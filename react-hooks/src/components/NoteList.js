@@ -1,6 +1,7 @@
 import { useState } from "react";
+import AddNote from "./AddNote";
 
-const NodeList = () => {
+const NoteList = () => {
 
     const [notes, setNotes] = useState([
         { id: 1, title: "note 1" },
@@ -8,8 +9,8 @@ const NodeList = () => {
         { id: 3, title: "note 3" }
     ]);
 
-    const addNote = () => {
-        setNotes([...notes, { id: 4, title: "note 4" }]);
+    const newNote = (title) => {
+        setNotes([...notes, { id: notes.length + 1, title: title }]);
     }
 
     return (
@@ -21,11 +22,11 @@ const NodeList = () => {
                         );
                     }) }
             </ul>
-            <button onClick={ addNote }>add note</button>
+            <AddNote newNote={ newNote }/>
         </>
     );
 
 
 };
 
-export default NodeList;
+export default NoteList;
