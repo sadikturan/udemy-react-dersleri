@@ -10,7 +10,7 @@ const UserList = () => {
         return <Loading/>;
     }
     return (
-        <div>
+        <div className="container mt-3">
             { users.map(user => (
                 <User user={user} key={user.id} /> 
             ))}

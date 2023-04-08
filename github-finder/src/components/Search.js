@@ -1,10 +1,12 @@
 import React, { useState,useContext } from 'react'
+import { AlertContext } from '../context/alertContext';
 import { UsersContext } from '../context/usersContext';
 
-const Search = ({ displayAlert }) => {
+const Search = () => {
 
     const [keyword, setKeyword] = useState('');
     const { searchUsers, users,clearUsers  } = useContext(UsersContext);
+    const { displayAlert } = useContext(AlertContext);
 
     const onChange = (e) => {
         setKeyword(e.target.value);
