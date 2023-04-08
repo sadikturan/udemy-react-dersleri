@@ -19,7 +19,7 @@ export class Search extends Component {
         e.preventDefault();
 
         if(this.state.keyword === '') {
-            this.props.displayAlert('Anahtar Kelime Giriniz', 'danger');
+            this.props.displayAlert('Anahtar Kelime Giriniz', 'warning');
         } else {
             this.props.searchUsers(this.state.keyword);
             this.setState({ keyword: '' });
