@@ -27,16 +27,22 @@ class App extends React.Component {
                 }
             ],
             selectedProducts: [
-                {
-                    count: 2,
-                    product: {
-                        name: "iphone 17",
-                        price: 60000,
-                        image: "3.jpg"
-                    }
-                }
             ]
         }
+    }
+
+    componentDidMount() {
+        const products =  JSON.parse(localStorage.getItem("selectedProducts"));
+        if(products) {
+            this.setState({
+                selectedProducts: products
+            });
+        }
+    }
+
+    componentDidUpdate() {
+        const json_str = JSON.stringify(this.state.selectedProducts);
+        localStorage.setItem("selectedProducts", json_str);
     }
 
     selectProduct = (product) => {
