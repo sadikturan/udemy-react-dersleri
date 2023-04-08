@@ -75,6 +75,22 @@ class App extends React.Component {
         });
     }
 
+    deleteProduct = (product) => {
+        this.setState(() => {
+
+            const index = this.state.selectedProducts.findIndex(item => item.product.name == product.name);
+
+            if (index > -1) {
+                this.state.selectedProducts.splice(index, 1);
+                return {
+                    selectedProducts: this.state.selectedProducts
+                }
+            }
+
+
+        });
+    }
+
     render() {
         return (
             <div className='container mt-3'>
@@ -87,7 +103,7 @@ class App extends React.Component {
                         <ProductList products={this.state.products} selectProduct={this.selectProduct}/>   
                     </div>
                     <div className="col-4">
-                        <SelectedProductList products={this.state.selectedProducts}/>
+                        <SelectedProductList products={this.state.selectedProducts} deleteProduct={this.deleteProduct}/>
                     </div>
                 </div>
             </div>
