@@ -1,9 +1,7 @@
 import Navbar from './components/Navbar';
 import UserList from './components/UserList';
-
-// xmlhttprequuest, jquery, axios, fetch 
-
 import React, { Component } from 'react'
+import Search from './components/Search';
 
 export class App extends Component {
 
@@ -32,6 +30,7 @@ export class App extends Component {
     return (
       <div>
         <Navbar />
+        <Search />
         <div className="container mt-3">
           <UserList users={ this.state.users } loading={this.state.loading}/>
         </div>
