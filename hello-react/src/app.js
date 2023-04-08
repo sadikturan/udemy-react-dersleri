@@ -20,6 +20,9 @@ var products = [
     }
 ]
 
+// react cdn => varolan proje => tools => (webpack + live server) 
+// create-react-app
+
 var selectedProducts = [];
 
 function selectProduct(event, p_name) {
