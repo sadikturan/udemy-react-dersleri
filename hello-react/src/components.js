@@ -11,6 +11,7 @@ class TodoApp extends React.Component {
             <div> 
                 <Header title={ data.baslik } description={ data.aciklama } /> 
                 <TodoList items={ data.gorevler } /> 
+                <NewItem />
             </div>
         );
     }
@@ -28,14 +29,45 @@ class Header extends React.Component {
 }
 
 class TodoList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.clearItems = this.clearItems.bind(this);
+    }
+    clearItems() {
+        console.log("clear items");
+        console.log(this.props.items);
+    }
     render() {
         return (
-            <ul>
-                {
-                    this.props.items.map((gorev,index) => 
+            <div>
+                <ul>
+                    {
+                        this.props.items.map((gorev,index) => 
                         <TodoItem key={index} item={gorev}/>)
-                }
-            </ul>
+                    }
+                </ul>
+                <button onClick={this.clearItems}>Temizle</button>
+            </div>
+        );
+    }
+}
+
+class NewItem extends React.Component {
+    onFormSubmit(e) {
+        e.preventDefault();
+
+        const item = e.target.elements.txtItem.value.trim();
+        if(item) {
+            e.target.elements.txtItem.value = "";
+            console.log(item);
+        }
+    }
+    render() {
+        return (
+            <form onSubmit={this.onFormSubmit}>
+                <input type="text" name="txtItem" />
+                <button type="submit">Ekle</button>
+            </form>
         );
     }
 }
