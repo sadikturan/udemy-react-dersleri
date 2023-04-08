@@ -4,6 +4,7 @@ class TodoApp extends React.Component {
     constructor(props) {
         super(props);
         this.clearItems = this.clearItems.bind(this);
+        this.addItem = this.addItem.bind(this);
         this.state = {
             gorevler: ['görev 1', 'görev 2', 'görev 3']
         }
@@ -12,6 +13,17 @@ class TodoApp extends React.Component {
     clearItems() {
         this.setState({
             gorevler: []
+        });
+    }
+
+    addItem(item) {
+
+        if (this.state.gorevler.indexOf(item) > -1) {
+            return 'aynı elemanı ekleyemezsiniz';
+        }
+
+        this.setState((prevState) => {
+            return { gorevler: prevState.gorevler.concat(item) }
         });
     }
 
@@ -24,7 +36,7 @@ class TodoApp extends React.Component {
             <div> 
                 <Header title={ data.baslik } description={ data.aciklama } /> 
                 <TodoList items={ this.state.gorevler } clear={this.clearItems} /> 
-                <NewItem />
+                <NewItem addItem={ this.addItem }/>
             </div>
         );
     }
@@ -57,21 +69,35 @@ class TodoList extends React.Component {
 }
 
 class NewItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.state = {
+            error: ''
+        }
+    }
     onFormSubmit(e) {
         e.preventDefault();
 
         const item = e.target.elements.txtItem.value.trim();
         if(item) {
             e.target.elements.txtItem.value = "";
-            console.log(item);
+            const error = this.props.addItem(item);
+            this.setState({
+                error: error
+            })
         }
     }
     render() {
         return (
-            <form onSubmit={this.onFormSubmit}>
-                <input type="text" name="txtItem" />
-                <button type="submit">Ekle</button>
-            </form>
+            <div>
+
+                { this.state.error && <p> { this.state.error } </p> }
+                <form onSubmit={this.onFormSubmit}>
+                    <input type="text" name="txtItem" />
+                    <button type="submit">Ekle</button>
+                </form>
+            </div>
         );
     }
 }
