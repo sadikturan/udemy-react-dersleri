@@ -3,6 +3,7 @@ import React from 'react';
 import ProductList from './ProductList';
 import Header from './Header';
 import NewProduct from './NewProduct';
+import SelectedProductList from './SelectedProductList';
 
 class App extends React.Component {
     constructor(props) {
@@ -25,7 +26,13 @@ class App extends React.Component {
                     image: "3.jpg"
                 }
             ],
-            selectedProducts: []
+            selectedProducts: [
+                {
+                    name: "iphone 17",
+                    price: 60000,
+                    image: "3.jpg"
+                }
+            ]
         }
     }
 
@@ -52,7 +59,9 @@ class App extends React.Component {
                     <div className="col-4">
                         <ProductList products={this.state.products} selectProduct={this.selectProduct}/>   
                     </div>
-                    <div className="col-4"></div>
+                    <div className="col-4">
+                        <SelectedProductList products={this.state.selectedProducts}/>
+                    </div>
                 </div>
             </div>
         );
