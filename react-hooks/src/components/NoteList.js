@@ -1,6 +1,9 @@
+import NotesContext from '../contexts/notesContext';
+import { useContext } from "react";
 import Note from "./Note";
 
-const NoteList = ({ notes, dispatch }) => {
+const NoteList = () => {
+    const { notes,dispatch } = useContext(NotesContext);
     return notes.length > 0 ? 
     (
         <div className="note-list">

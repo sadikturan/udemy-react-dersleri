@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import NotesContext from '../contexts/notesContext';
 
-const AddNote = ({ dispatch, notes }) => {
+const AddNote = () => {
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const { dispatch, notes } = useContext(NotesContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
