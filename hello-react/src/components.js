@@ -48,10 +48,18 @@ class TodoApp extends React.Component {
             aciklama: "Bekleyen Görevler",            
         }
         return (
-            <div> 
-                <Header title={ data.baslik } description={ data.aciklama } /> 
-                <TodoList items={ this.state.gorevler } clear={this.clearItems} deleteItem={ this.deleteItem } /> 
-                <NewItem addItem={ this.addItem }/>
+            <div className="container my-3"> 
+                <div className="card">
+                    <div className="card-header">
+                        <Header title={ data.baslik } description={ data.aciklama } /> 
+                    </div>
+                    <div className="card-body">
+                        <TodoList items={ this.state.gorevler } clear={this.clearItems} deleteItem={ this.deleteItem } /> 
+                    </div>
+                    <div className="card-footer">
+                        <NewItem addItem={ this.addItem }/>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -77,8 +85,8 @@ class TodoApp extends React.Component {
 
 const Header = (props) => {
     return  (
-        <div> 
-            <h1>{ props.title }</h1>
+        <div className="text-center"> 
+            <h1 className="h3">{ props.title }</h1>
             <p> { props.description }</p>
         </div>
     );
@@ -87,12 +95,24 @@ const Header = (props) => {
 const TodoList = (props) => {
     return (
         <div>
-            <ul>
+            <ul className="list-group">
                 {
                     props.items.map((gorev,index) => <TodoItem key={index} item={gorev} deleteItem={ props.deleteItem } />)
                 }
             </ul>
-            <button onClick={props.clear}>Temizle</button>
+            {
+                props.items.length > 0 
+                ? 
+                <p>
+                    <button className="btn btn-outline-danger float-end mt-3" onClick={props.clear}>Temizle</button>
+                </p>
+                :
+                <div className="alert alert-warning">
+                    Bir görev ekleyiniz.
+                </div>
+            }
+            
+
         </div>
     );
 }
@@ -123,8 +143,10 @@ class NewItem extends React.Component {
 
                 { this.state.error && <p> { this.state.error } </p> }
                 <form onSubmit={this.onFormSubmit}>
-                    <input type="text" name="txtItem" />
-                    <button type="submit">Ekle</button>
+                    <div className="input-group">
+                        <input className="form-control" type="text" name="txtItem" />
+                        <button className="btn btn-primary" type="submit">Ekle</button>
+                    </div>
                 </form>
             </div>
         );
@@ -137,9 +159,9 @@ class NewItem extends React.Component {
 
 const TodoItem = (props) => {
     return (
-        <li>
+        <li className="list-group-item">
             {props.item}
-            <button onClick={() => { props.deleteItem(props.item) }}>x</button>
+            <button className="btn btn-danger btn-sm float-end" onClick={() => { props.deleteItem(props.item) }}>x</button>
         </li>
     );
 }

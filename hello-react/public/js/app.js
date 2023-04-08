@@ -70,16 +70,26 @@ var TodoApp = /*#__PURE__*/function (_React$Component) {
         baslik: "Todo Application",
         aciklama: "Bekleyen Görevler"
       };
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
+      return /*#__PURE__*/React.createElement("div", {
+        className: "container my-3"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "card"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "card-header"
+      }, /*#__PURE__*/React.createElement(Header, {
         title: data.baslik,
         description: data.aciklama
-      }), /*#__PURE__*/React.createElement(TodoList, {
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "card-body"
+      }, /*#__PURE__*/React.createElement(TodoList, {
         items: this.state.gorevler,
         clear: this.clearItems,
         deleteItem: this.deleteItem
-      }), /*#__PURE__*/React.createElement(NewItem, {
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "card-footer"
+      }, /*#__PURE__*/React.createElement(NewItem, {
         addItem: this.addItem
-      }));
+      }))));
     }
   }, {
     key: "componentDidMount",
@@ -104,18 +114,27 @@ var TodoApp = /*#__PURE__*/function (_React$Component) {
   return TodoApp;
 }(React.Component);
 var Header = function Header(props) {
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, props.title), /*#__PURE__*/React.createElement("p", null, " ", props.description));
+  return /*#__PURE__*/React.createElement("div", {
+    className: "text-center"
+  }, /*#__PURE__*/React.createElement("h1", {
+    className: "h3"
+  }, props.title), /*#__PURE__*/React.createElement("p", null, " ", props.description));
 };
 var TodoList = function TodoList(props) {
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, props.items.map(function (gorev, index) {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", {
+    className: "list-group"
+  }, props.items.map(function (gorev, index) {
     return /*#__PURE__*/React.createElement(TodoItem, {
       key: index,
       item: gorev,
       deleteItem: props.deleteItem
     });
-  })), /*#__PURE__*/React.createElement("button", {
+  })), props.items.length > 0 ? /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-outline-danger float-end mt-3",
     onClick: props.clear
-  }, "Temizle"));
+  }, "Temizle")) : /*#__PURE__*/React.createElement("div", {
+    className: "alert alert-warning"
+  }, "Bir g\xF6rev ekleyiniz."));
 };
 var NewItem = /*#__PURE__*/function (_React$Component2) {
   _inherits(NewItem, _React$Component2);
@@ -148,12 +167,16 @@ var NewItem = /*#__PURE__*/function (_React$Component2) {
     value: function render() {
       return /*#__PURE__*/React.createElement("div", null, this.state.error && /*#__PURE__*/React.createElement("p", null, " ", this.state.error, " "), /*#__PURE__*/React.createElement("form", {
         onSubmit: this.onFormSubmit
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "input-group"
       }, /*#__PURE__*/React.createElement("input", {
+        className: "form-control",
         type: "text",
         name: "txtItem"
       }), /*#__PURE__*/React.createElement("button", {
+        className: "btn btn-primary",
         type: "submit"
-      }, "Ekle")));
+      }, "Ekle"))));
     }
   }, {
     key: "componentDidUpdate",
@@ -164,7 +187,10 @@ var NewItem = /*#__PURE__*/function (_React$Component2) {
   return NewItem;
 }(React.Component);
 var TodoItem = function TodoItem(props) {
-  return /*#__PURE__*/React.createElement("li", null, props.item, /*#__PURE__*/React.createElement("button", {
+  return /*#__PURE__*/React.createElement("li", {
+    className: "list-group-item"
+  }, props.item, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-danger btn-sm float-end",
     onClick: function onClick() {
       props.deleteItem(props.item);
     }
