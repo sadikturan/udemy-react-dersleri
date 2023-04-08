@@ -2,22 +2,16 @@
 
 var products = [{
   name: "iphone 15",
-  price: 50000,
-  description: "iyi telefon",
-  colors: ["silver", "red", "white", "black"]
+  price: 50000
 }, {
   name: "iphone 16",
-  price: 60000,
-  description: "iyi telefon",
-  colors: ["silver", "red", "white"]
+  price: 60000
 }, {
   name: "iphone 17",
-  price: 60000,
-  description: "iyi telefon",
-  colors: ["silver", "red", "white"]
+  price: 60000
 }];
-function formatPrice(product) {
-  return /*#__PURE__*/React.createElement("p", null, product.price, " TL");
+function addProduct(event, p_name) {
+  console.log(event.target, p_name);
 }
 var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", {
   id: "header"
@@ -25,11 +19,13 @@ var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.
   return /*#__PURE__*/React.createElement("div", {
     className: "product-details",
     key: index
-  }, product.name && product.name.length > 3 ? /*#__PURE__*/React.createElement("h2", null, " ", product.name, " ") : /*#__PURE__*/React.createElement("p", null, " \xFCr\xFCn ismi girilmemi\u015F "), product.price && product.price > 0 && formatPrice(product), product.description && /*#__PURE__*/React.createElement("p", null, " ", product.description, " "), product.colors.length > 0 ? /*#__PURE__*/React.createElement("p", null, "renk se\xE7eneklerimiz mevcut") : "", /*#__PURE__*/React.createElement("ul", null, product.colors.map(function (color, index) {
-    return /*#__PURE__*/React.createElement("li", {
-      key: index
-    }, color);
-  })));
+  }, /*#__PURE__*/React.createElement("h2", null, " ", product.name, " "), product.price, /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    id: index,
+    onClick: function onClick(event) {
+      return addProduct(event, product.name);
+    }
+  }, "Ekle"));
 }));
 var root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(template);

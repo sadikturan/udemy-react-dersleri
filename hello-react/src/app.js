@@ -1,28 +1,23 @@
 var products = [
     {
         name: "iphone 15",
-        price: 50000,
-        description: "iyi telefon",
-        colors: ["silver","red","white","black"]
+        price: 50000
     },
     {
         name: "iphone 16",
-        price: 60000,
-        description: "iyi telefon",
-        colors: ["silver","red","white"]
+        price: 60000
     }
     ,
     {
         name: "iphone 17",
-        price: 60000,
-        description: "iyi telefon",
-        colors: ["silver","red","white"]
+        price: 60000
     }
 ]
 
-function formatPrice(product) {
-    return <p>{ product.price } TL</p>;
+function addProduct(event, p_name) {
+    console.log(event.target, p_name);
 }
+
 
 var template = 
     <div>
@@ -31,20 +26,12 @@ var template =
         {
             products.map((product,index) => (
                 <div className="product-details" key={index}>
-                    { (product.name && product.name.length>3) ? <h2> { product.name } </h2>: <p> ürün ismi girilmemiş </p> }
-                    { (product.price && product.price > 0) && formatPrice(product) }
-                    { product.description &&  <p> { product.description } </p>}
-                    { product.colors.length > 0 ? <p>renk seçeneklerimiz mevcut</p>:""}
-                    <ul>
-                        {
-                            product.colors.map((color,index) => (<li key={index}>{ color }</li>))                    
-                        }
-                    </ul>
+                    { <h2> { product.name } </h2>}
+                    { product.price }
+                    <button type="button" id={index} onClick={(event) => addProduct(event, product.name)}>Ekle</button>
                 </div>
             ))
         }
-
-       
 
     </div>; 
 
