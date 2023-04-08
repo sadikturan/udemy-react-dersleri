@@ -4,25 +4,35 @@ var root = ReactDOM.createRoot(document.getElementById("root"));
 // class component
 
 // function Header(props) {
-//     return (<h1>Todo App</h1>);
+//     console.log(props);
+//     return <div> 
+//                 <h1>{ props.title }</h1>
+//                 <p> { props.description }</p>
+//            </div>;
 // }
+
+class Header extends React.Component {
+    render() {
+        return  (
+            <div> 
+                <h1>{ this.props.title }</h1>
+                <p> { this.props.description }</p>
+            </div>
+        );
+    }
+}
 
 class TodoApp extends React.Component {
     render() {
         return (
             <div> 
-                <Header /> 
+                <Header title="Todo Uygulaması" description="Bekleyen Görevler"/> 
                 <Todo /> 
             </div>
         );
     }
 }
 
-class Header extends React.Component {
-    render() {
-        return (<h1>Todo App</h1>);
-    }
-}
 
 function Todo(props) {
     return (

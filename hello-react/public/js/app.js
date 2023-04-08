@@ -19,37 +19,44 @@ var root = ReactDOM.createRoot(document.getElementById("root"));
 // class component
 
 // function Header(props) {
-//     return (<h1>Todo App</h1>);
+//     console.log(props);
+//     return <div> 
+//                 <h1>{ props.title }</h1>
+//                 <p> { props.description }</p>
+//            </div>;
 // }
-var TodoApp = /*#__PURE__*/function (_React$Component) {
-  _inherits(TodoApp, _React$Component);
-  var _super = _createSuper(TodoApp);
-  function TodoApp() {
-    _classCallCheck(this, TodoApp);
-    return _super.apply(this, arguments);
-  }
-  _createClass(TodoApp, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(Todo, null));
-    }
-  }]);
-  return TodoApp;
-}(React.Component);
-var Header = /*#__PURE__*/function (_React$Component2) {
-  _inherits(Header, _React$Component2);
-  var _super2 = _createSuper(Header);
+var Header = /*#__PURE__*/function (_React$Component) {
+  _inherits(Header, _React$Component);
+  var _super = _createSuper(Header);
   function Header() {
     _classCallCheck(this, Header);
-    return _super2.apply(this, arguments);
+    return _super.apply(this, arguments);
   }
   _createClass(Header, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("h1", null, "Todo App");
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, this.props.title), /*#__PURE__*/React.createElement("p", null, " ", this.props.description));
     }
   }]);
   return Header;
+}(React.Component);
+var TodoApp = /*#__PURE__*/function (_React$Component2) {
+  _inherits(TodoApp, _React$Component2);
+  var _super2 = _createSuper(TodoApp);
+  function TodoApp() {
+    _classCallCheck(this, TodoApp);
+    return _super2.apply(this, arguments);
+  }
+  _createClass(TodoApp, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
+        title: "Todo Uygulamas\u0131",
+        description: "Bekleyen G\xF6revler"
+      }), /*#__PURE__*/React.createElement(Todo, null));
+    }
+  }]);
+  return TodoApp;
 }(React.Component);
 function Todo(props) {
   return /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "G\xF6rev 1"), /*#__PURE__*/React.createElement("li", null, "G\xF6rev 2"), /*#__PURE__*/React.createElement("li", null, "G\xF6rev 3"));
