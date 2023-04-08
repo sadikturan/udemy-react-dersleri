@@ -11,3 +11,96 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+:root {
+  --primary-color: #3d348b;
+  --secondary-color: #7678ed;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.container {
+  max-width: 700px;
+  width: 90%;
+  margin: 30px auto;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.navbar {
+  padding: 10px 20px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.navbar h1 {
+  margin: 10px 0;
+}
+
+.note-list {
+  margin: 20px;
+}
+
+.note-list ul {
+  list-style-type: none;
+}
+
+.note-list li {
+  background-color: var(--secondary-color);
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+.note-list li:hover {
+  text-decoration: line-through;
+}
+
+.note-list .title {
+  font-size: 20px;
+  color: #fff;
+}
+
+.note-list p {
+  font-size: 15px;
+  font-style: italic;
+}
+
+form {
+  padding: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: 0;
+}
+
+input[type="submit"] {
+  margin: 10px auto;
+  display: block;
+  color: #fff;
+  background-color: var(--secondary-color);
+  border: 0;
+  padding: 6px 20px;
+}
+
+.empty {
+  background-color: var(--secondary-color);
+  padding: 10px;
+  margin: 20px;
+  text-align: center;
+}
