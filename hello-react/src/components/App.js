@@ -28,9 +28,12 @@ class App extends React.Component {
             ],
             selectedProducts: [
                 {
-                    name: "iphone 17",
-                    price: 60000,
-                    image: "3.jpg"
+                    count: 2,
+                    product: {
+                        name: "iphone 17",
+                        price: 60000,
+                        image: "3.jpg"
+                    }
                 }
             ]
         }
@@ -38,7 +41,31 @@ class App extends React.Component {
 
     selectProduct = (product) => {
         this.setState((prevState) => {
-            return { selectedProducts: prevState.selectedProducts.concat(product) }
+
+            const index = this.state.selectedProducts.findIndex(item=>item.product.name==product.name);
+
+            if(index > -1) {
+                // mevcut eleman
+                const updated_list = this.state.selectedProducts.map(item=> {
+                    if(item.product.name == product.name) {
+                        item.count += 1;
+                    }
+                    return item;
+                });
+
+                return {
+                    selectedProducts: updated_list
+                }
+            }
+
+            const prd = {
+                count: 1,
+                product: product
+            }
+
+            return { selectedProducts: prevState.selectedProducts.concat(prd) }
+
+
         });
     }
     
