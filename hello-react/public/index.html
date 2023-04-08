@@ -7,6 +7,24 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>My first react app</h1>
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script>
+        
+        // var template = "<h1>My first react app</h1>";
+        // var root = document.getElementById("root");
+        // root.innerHTML = template;
+
+        // 1.Yöntem => React - CDN (eksik araçlar)
+        // 2.Yöntem => create-react-app
+
+        var template = React.createElement('h1', null, 'My first react app');
+        var root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(template);
+
+    </script>
+
 </body>
 </html>
