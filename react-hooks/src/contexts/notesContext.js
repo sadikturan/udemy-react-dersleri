@@ -1,5 +1,33 @@
 import React from "react";
+import { useEffect, useReducer } from "react";
+import notesReducer from "../reducers/notesReducer";
 
-const NotesContext = React.createContext();
+export const NotesContext = React.createContext();
 
-export default NotesContext;
+const NotesContextProvider = (props) => {
+    const [notes, dispatch] = useReducer(notesReducer, []);
+
+    useEffect(() => {
+        console.log("loaded");
+        const data = JSON.parse(localStorage.getItem("notes"));
+        if(data) {
+            dispatch({ 
+                type: "POPULATE_NOTES",
+                notes: data
+            })
+        }
+    },[]);
+
+    useEffect(() => {
+        console.log("updated");
+        localStorage.setItem("notes", JSON.stringify(notes));
+    }, [notes]);
+
+    return (
+        <NotesContext.Provider value={{ notes, dispatch }}>
+            { props.children }
+        </NotesContext.Provider>
+    );
+}
+
+export default NotesContextProvider;
