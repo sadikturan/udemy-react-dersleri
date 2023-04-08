@@ -1,7 +1,8 @@
 var product = {
-    name: "IPhone 15",
+    name: "iphone 15",
     price: 50000,
-    description: "iyi telefon"
+    description: "iyi telefon",
+    colors: []
 }
 
 function formatPrice(product) {
@@ -18,9 +19,10 @@ var template =
     <div>
         <h1 id="header">Ürün Listesi</h1>
         <div id="product-details">
-            <h2>{ product.name }</h2>
+            { (product.name && product.name.length>3) ? <h2> { product.name } </h2>: <p> ürün ismi girilmemiş </p> }
             { (product.price && product.price > 0) && formatPrice(product) }
             { product.description &&  <p> { product.description } </p>}
+            { product.colors.length > 0 ? <p>renk seçeneklerimiz mevcut</p>:""}
             <ul>
                 <li>Lorem, ipsum.</li>
                 <li>Lorem, ipsum.</li>
