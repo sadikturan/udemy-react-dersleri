@@ -1,0 +1,15 @@
+.container {
+    max-width: 800px;
+    margin: 10px auto;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.card img {
+    width: 100%;
+}
