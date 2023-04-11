@@ -74,10 +74,11 @@ function App() {
         {
           cards.map(card => (
             <MemoryCard 
-            card={card} 
-            key={card.id} 
-            handleSelected={handleSelected}
-            disabled={disabled}
+              card={card} 
+              key={card.id} 
+              handleSelected={handleSelected}
+              disabled={disabled}
+              rotated={card === selectedOne || card === selectedTwo || card.matched} 
             />
           ))
         }
