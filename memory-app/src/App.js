@@ -16,6 +16,7 @@ function App() {
   const [selectedOne, setSelectedOne] = useState(null);
   const [selectedTwo, setSelectedTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const [score, setScore] = useState(0);
 
   const prepareCards = () => {
 
@@ -26,6 +27,7 @@ function App() {
     setCards(sortedCards);
     setSelectedOne(null);
     setSelectedTwo(null);
+    setScore(0);
   }
 
   const handleSelected = (card) => {
@@ -62,6 +64,7 @@ function App() {
     setSelectedOne(null);
     setSelectedTwo(null);
     setDisabled(false);
+    setScore(prevScore => prevScore + 1);
   }
 
 
@@ -69,7 +72,7 @@ function App() {
     <div className="container">
       <h1>Memory App</h1>
       <button onClick={prepareCards}>Oyunu Başlat</button>
-
+      <p>{ score }</p>
       <div className="card-grid">
         {
           cards.map(card => (
