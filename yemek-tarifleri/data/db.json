@@ -1,0 +1,43 @@
+{
+    "tarifler": [
+        {
+            "id": "1",
+            "baslik": "Halka Kebabı",
+            "malzemeler": [
+                "500 gram kıyma",
+                "1 çay kaşığı tuz",
+                "Yarım çay kaşığı karabiber",
+                "3 adet patlıcan",
+                "3 adet patates"
+            ],
+            "hazirlanisi": "Patlıcanların kabuklarını alacalı olarak soyalım ve yarım parmak genişliğinde dilimleyelim.Ardından su dolu kabın içerisine tuz ekleyip karıştıralım ve patlıcanları acısının çıkması için suya alarak 20 dakika bekletelim. Kabuklarını soyduğumuz soğanları da daire şeklinde dilimleyelim.",
+            "url": "https://www.nefisyemektarifleri.com/video/halka-kebabi/"            
+        },
+        {
+            "id": "2",
+            "baslik": "Karnıyarık Yemeği",
+            "malzemeler": [
+                "6 adet küçük boy patlıcan",
+                "3 adet sivri biber",
+                "2 adet orta boy soğan",
+                "2 adet domates",
+                "2 adet sivri biber"
+            ],
+            "hazirlanisi": "Patlıcanları çizgili soyup, yarım saat yağ çekmemesi için tuzlu suda bekletin.İyice yıkadıktan sonra suyunu havlu ile çektirin ve az yağda kızartın. 3 adet biberi de yağda kızartın.Daha sonra aynı tavada doğranmış soğanları kavurun, kıymayı ekleyerek bir müddet daha kavurun ve biberleri, sarımsağı ekleyerek 2 dakika daha kavurun.",
+            "url": "https://www.nefisyemektarifleri.com/video/karniyarik-yemegi-videosu/"           
+        },
+        {
+            "id": "3",
+            "baslik": "Tavuklu Sultan Kebabı",
+            "malzemeler": [
+                "2 adet yufka",
+                "400g tavuk göğsü",
+                "400g tavuk pirzola",
+                "1 adet kuru soğan",
+                "1 yemek kaşığı domates salçası"
+            ],
+            "hazirlanisi": "Patlıcanı alacalı soyarak küçük küçük doğrayın ve sıvı yağ ile kızartın.Süzgece alarak yağının süzmesi bekleyin bu arada tavukları soteleyin.Tavukları kuş başı doğrayın, tencereye alarak arada karıştırarak pişirin.Rengi dönüp suyunu saldığında yemeklik doğranmış soğanı ekleyin.",
+            "url": "https://www.nefisyemektarifleri.com/tavuklu-sultan-kebabi-tarifi/"      
+        }
+    ]
+}
