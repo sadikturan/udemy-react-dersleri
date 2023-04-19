@@ -7,10 +7,11 @@ function Details() {
   const { id } = useParams();
   const url = "http://localhost:3000/tarifler/" + id;
 
-  const { data: tarif } = useFetch(url)
+  const { data: tarif, isLoading } = useFetch(url)
 
   return (
     <div className='row mt-3'>
+      { isLoading && <div className='alert alert-warning'>Yükleniyor...</div>}
       {
         tarif && (
           <>
