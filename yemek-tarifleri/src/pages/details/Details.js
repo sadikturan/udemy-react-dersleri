@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './Details.css';
 import { useParams } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
 
 function Details() {
   const { id } = useParams();
-  const [tarif, setTarif] = useState(null);
   const url = "http://localhost:3000/tarifler/" + id;
 
-  useEffect(() => {
-   fetch(url)
-    .then(res => res.json()) 
-    .then(data => setTarif(data))
-  }, [url])
+  const { data: tarif } = useFetch(url)
 
   return (
     <div className='row mt-3'>
@@ -26,8 +22,8 @@ function Details() {
               <p>{ tarif.aciklama }</p>
               <ul>
                 {
-                  tarif.malzemeler.map(malzeme => (
-                    <li>{ malzeme }</li>
+                  tarif.malzemeler.map((malzeme, index) => (
+                    <li key={index}>{ malzeme }</li>
                   ))
                 }
               </ul>
