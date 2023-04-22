@@ -5,7 +5,7 @@ import useFetch from '../../hooks/useFetch';
 
 function Home() {
 
-  const { data: tarifler, isLoading, error } = useFetch("http://localhost:3000/tarifler2")
+  const { data: tarifler, isLoading, error } = useFetch("http://localhost:3000/tarifler")
 
   return (
     <div className="row mt-3">
