@@ -1,16 +1,27 @@
 import { useState, useEffect } from "react"
 
-const useFetch = (url) => {
+const useFetch = (url, method="GET") => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [options, setOptions] = useState(null);
+
+    const postData = (data) => {
+        setOptions({
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+    }
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = async (options) => {
             setIsLoading(true);
 
             try {
-                const res = await fetch(url);
+                const res = await fetch(url, {...options});
                 if(!res.ok) {
                     throw new Error(res.statusText);
                 }
@@ -25,12 +36,18 @@ const useFetch = (url) => {
             }
         }
 
-        fetchData();
+        if(method==="GET") {
+            fetchData();
+        }
 
-       }, [url])
+        if(method === "POST" && options) {
+            fetchData(options)
+        }
+
+       }, [url, options, method])
 
     return {
-        data, isLoading, error
+        data, isLoading, error, postData
     }
 }
 
