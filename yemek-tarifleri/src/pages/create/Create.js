@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import './Create.css';
 import useFetch from '../../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 function Create() {
   const [baslik, setBaslik] = useState('');
@@ -13,6 +14,7 @@ function Create() {
   const [url, setUrl] = useState('');
   const malzemeInput = useRef(null);
   const navigate = useNavigate();
+  const {btnColor} = useContext(ThemeContext);
 
   const { postData, data } = useFetch("http://localhost:3000/tarifler","POST")
  
@@ -55,7 +57,7 @@ function Create() {
           <label htmlFor="malzemeler">Malzemeler <ul>{malzemeler.map(item=><li key={item}>{item}</li>)}</ul></label>
           <div className="input-group">
             <input type="text" ref={malzemeInput} name="malzeme" className='form-control' onChange={(e) => setMalzeme(e.target.value)}/>
-            <button className='btn btn-secondary' type='button' onClick={handleAddMalzeme}>+</button>
+            <button className={`btn btn-${btnColor}`} type='button' onClick={handleAddMalzeme}>+</button>
           </div>
         </div>
         <div className="mb-3">
@@ -70,7 +72,7 @@ function Create() {
           <label htmlFor="url" className="form-label">Url</label>
           <input type="text" name="url" id="url" className='form-control' onChange={(e) => setUrl(e.target.value)}/>
         </div>
-        <button type="submit" className='btn btn-primary'>Kaydet</button>
+        <button type="submit" className={`btn btn-${btnColor}`}>Kaydet</button>
       </form>
     </div>
    </div>
