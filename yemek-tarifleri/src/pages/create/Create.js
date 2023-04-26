@@ -14,7 +14,7 @@ function Create() {
   const [url, setUrl] = useState('');
   const malzemeInput = useRef(null);
   const navigate = useNavigate();
-  const {color} = useContext(ThemeContext);
+  const {color, mode} = useContext(ThemeContext);
 
   const { postData, data } = useFetch("http://localhost:3000/tarifler","POST")
  
@@ -41,8 +41,7 @@ function Create() {
   },[data,navigate])
 
   return (
-   <div className="card mt-3">
-    <div className="card-body">
+   <div className={`text-${mode === "dark" ? "light" : "dark"} border-${mode === "dark" ? "light" : "dark"}}`}>
       <h2>Yeni Tarif Ekle</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -74,7 +73,6 @@ function Create() {
         </div>
         <button type="submit" className={`btn btn-${color}`}>Kaydet</button>
       </form>
-    </div>
    </div>
   )
 }

@@ -12,3 +12,13 @@
     cursor: pointer;
     margin-left: 15px;
 }
+
+.mode-toggle {
+    margin-right: auto;
+}
+
+.mode-toggle img {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
